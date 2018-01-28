@@ -2,8 +2,6 @@ package com.acme.recipes.database.util;
 
 import android.arch.lifecycle.LiveData;
 
-import javax.annotation.Nonnull;
-
 import io.realm.RealmChangeListener;
 import io.realm.RealmModel;
 import io.realm.RealmObject;
@@ -17,12 +15,7 @@ public class RealmLiveData <T extends RealmModel> extends LiveData<T> {
     public RealmLiveData(T model) {
         this.model = model;
 
-        listener =new RealmChangeListener<T>() {
-            @Override
-            public void onChange(@Nonnull T update) {
-                setValue(update);
-            }
-        };
+        listener = update -> setValue(update);
 
     }
 
